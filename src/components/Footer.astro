@@ -1,0 +1,38 @@
+---
+---
+
+<footer>
+  <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+</footer>
+
+<style>
+  footer {
+    background: #111; /* Dark background */
+    color: #ecf0f1; /* Soft light text color */
+    text-align: center;
+    padding: 20px;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.1); /* Soft shadow */
+    position: relative;
+    margin-top: 50px;
+  }
+
+  footer p {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+
+  /* Gentle glow effect */
+  footer p:hover {
+    color: #27ae60; /* Subtle green */
+    text-shadow: 0 0 8px rgba(39, 174, 96, 0.7), 0 0 12px rgba(39, 174, 96, 0.5);
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
