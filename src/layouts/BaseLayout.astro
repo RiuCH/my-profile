@@ -1,0 +1,62 @@
+---
+// src/layouts/BaseLayout.astro
+import Nav from '../components/Nav.astro'; // Assuming Nav is common
+import Footer from '../components/Footer.astro'; // Assuming Footer is common
+// Define props the layout accepts (e.g., title)
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} - Riu Cherdchusakulchai</title> {/* Use the title prop */}
+    
+    {/* Common Stylesheets and Fonts */}
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/global.css" /> 
+
+    {/* --- ADDED: Particle Script --- */}
+    <script type="module">
+        import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@1.41.1/+esm";
+        // Assuming config is in src/scripts/ - adjust path if layout is in different depth
+        // If BaseLayout.astro is in src/layouts/, this path should be correct
+        import { particlesConfig } from '/src/scripts/particles-config.js'; 
+        
+        window.addEventListener("load", () => {
+            // Check if element exists before loading particles
+            const particlesElement = document.getElementById('particles-js');
+            if (particlesElement) {
+                tsParticles.load("particles-js", particlesConfig); 
+                console.log("Particles loaded from BaseLayout."); // Optional debug log
+            } else {
+                console.warn("Particle container #particles-js not found in BaseLayout.");
+            }
+        });
+    </script>
+    {/* --- END: Particle Script --- */}
+
+    {/* Add other common head elements here */}
+</head>
+<body>
+    {/* --- ADDED: Particle container --- */}
+    {/* Ensure your global.css positions this correctly (e.g., fixed, z-index: -1) */}
+    <div id="particles-js"></div>
+    {/* --- END: Particle container --- */}
+    
+    <Nav /> {/* Common Navigation */}
+
+    <main>
+        {/* The <slot /> tag renders the content from the page using this layout */}
+        <slot /> 
+    </main>
+
+    <Footer /> {/* Common Footer */}
+    
+    
+</body>
+
+</html>

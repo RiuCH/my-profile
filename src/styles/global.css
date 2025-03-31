@@ -5,7 +5,16 @@ body {
     line-height: 1.6; /* Improve readability */
     margin: 0;
     padding: 0;
+    flex-grow: 1; 
   }
+
+main {
+    flex-grow: 1; 
+}
+nav, footer { 
+    flex-shrink: 0;
+}
+
 
 #particles-js {
 position: fixed;
@@ -117,16 +126,14 @@ transform: scale(1.1);
     display: grid; /* Use Grid for layout */
     grid-template-columns: 1fr 1fr; /* Create two equal-width columns */
     gap: 30px; /* Space between the columns */
-    max-width: 1200px; /* Allow container to be wider */
-    margin: 60px auto; /* Center the container and add vertical margin */
-    padding: 0 20px; /* Add side padding */
+    margin: 20px; /* Center the container and add vertical margin */
+    padding: 0 30px; /* Add side padding */
     align-items: start; /* Align columns at the top */
 }
   
 /* General Section styles */
 .section {
-    /* margin: 60px auto; /* REMOVED - Handled by sections-container now */ 
-    border-radius: 8px; 
+    border-radius: 0px; 
     opacity: 1; 
     transform: translateY(30px); 
     transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
@@ -147,7 +154,7 @@ margin: 0; /* Remove individual top/bottom margins */
     text-align: center;
     margin-bottom: 30px;
     color: #2ecc71; 
-    font-size: 1.8rem;
+    font-size: 3rem;
     font-family: 'Orbitron', sans-serif; 
 }
 
@@ -158,19 +165,19 @@ margin: 0; /* Remove individual top/bottom margins */
 
 .card-container {
     display: grid; /* Or flexbox */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Example responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); /* Example responsive grid */
     gap: 20px;
     margin-top: 20px;
     text-align: left; /* Often better for details */
 }
 
 .card {
-background-color: rgba(255, 255, 255, 0.05); /* Subtle background */
-border: 1px solid rgba(46, 204, 113, 0.2); /* Subtle border with accent color */
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(46, 204, 113, 0.1); 
+    padding: 50px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -178,24 +185,59 @@ transform: translateY(-5px); /* Lift effect on hover */
 box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3); /* Accent glow on hover */
 }
 
+.card-header {
+    display: flex;
+    align-items: flex-start; /* Align icon top */
+    gap: 15px; /* Space between icon and text */
+    margin-bottom: 15px; /* Space below header */
+}
+
+/* ADDED: Icon/Logo placeholder */
+.card-logo {
+    width: 125px; 
+    height: 125px; 
+    /* background-color: rgba(255, 255, 255, 0.1); Placeholder style */
+    /* border: 1px dashed rgba(255, 255, 255, 0.2); Dashed border */
+    border-radius: 4px; 
+    flex-shrink: 0; 
+    overflow: hidden; 
+}
+
+.card-logo img {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Make image fill the container width */
+    height: 100%; /* Make image fill the container height */
+    object-fit: contain; /* Scale image down to fit, preserving aspect ratio */
+    /* Use object-fit: cover; if you want it to fill and potentially crop */
+}
+
+
+/* ADDED: Container for title/date text */
+.card-title-date {
+    flex-grow: 1; /* Allow text to take space */
+}
+
 .card h3 {
-color: #2ecc71; /* Use accent color for titles */
+color: #a8e0c0; /* Use accent color for titles */
 margin-top: 0;
+margin-bottom: 0;
+font-size: 1.5rem;
 }
 
 .card .date {
-    font-size: 0.9em;
+    font-size: 1.2em;
     color: #bdc3c7; /* Lighter color for secondary info */
     margin-bottom: 10px;
 }
 
 .card ul {
     padding-left: 20px;
+    list-style: disc; 
     margin-bottom: 0;
 }
 .card li {
     margin-bottom: 8px;
-    line-height: 1.6;
+    font-size: 1.2rem;
 }
 
 h2 i {
@@ -244,5 +286,13 @@ h2 i {
     }
     .intro-content h2.intro-text {
         font-size: 1.8rem; /* Adjust intro heading size */
+    }
+    .card-header {
+        flex-direction: column;  /* Example: Stack icon above text */
+        align-items: center;
+        /* /* text-align: center; */
+    }
+    .card-logo {
+        margin-bottom: 10px; /* Add space below logo if stacked */
     }
   }

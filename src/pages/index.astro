@@ -1,104 +1,140 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html>
-  <head>
-    <title>My Portfolio - Riu Cherdchusakulchai</title>
-	<meta charset="UTF-8">'
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/src/styles/global.css" />
-	<link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script type="module">
-      import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@1.41.1/+esm";
-	  import { particlesConfig } from '/src/scripts/particles-config.js';
-	  import { setupClickableName } from '/src/scripts/clickable-name.js';
-      
-      window.addEventListener("load", () => {
-        tsParticles.load("particles-js", particlesConfig); 
-		setupClickableName(); 
-		
-      });
-    </script>
-  </head>
-  <body>
-    <div id="particles-js"></div>
-    <Nav />
+<BaseLayout title="My Portfolio - Riu Cherdchusakulchai">
     
     <header>
-      <h1 class="site-title">Riu Cherdchusakulchai</h1>
+      {/* Site title remains above the flex layout */}
+      <h1 class="site-title">Riu Cherdchusakulchai</h1> 
+      
+      
+      {/* Container to apply flexbox */}
       <div class="header-content"> 
         
         {/* Container for intro text elements */}
         <div class="intro-content"> 
           <h2 class="intro-text">Hello there! I'm Riu (ริว) 👋</h2> 
           <p class="intro-text">Passionate machine learning engineer with expertise in computer vision. Experienced in developing configurable ML pipelines,
-			multi-camera tracking systems, re-identification methods, 6D object pose estimation, and RGBD contactless body measurement.
-			Successfully designed innovative solutions for real-world AI applications and contributed to top-tier research, with multiple
-			publications in the field. Eager to further explore and advance computer vision and robotics through graduate studies.</p>
+            multi-camera tracking systems, re-identification methods, 6D object pose estimation, and RGBD contactless body measurement.
+            Successfully designed innovative solutions for real-world AI applications and contributed to top-tier research, with multiple
+            publications in the field. Eager to further explore and advance computer vision and robotics through graduate studies.</p>
           <a href="/files/resume.pdf" download class="btn">Download Resume</a>
         </div>
         
         {/* Profile picture container */}
         <div class="profile-container">
-          {/* Updated alt text for better accessibility */}
           <img src="/images/profile.jpg" alt="Profile Photo of Riu Cherdchusakulchai" class="profile-photo" />
         </div>
 
       </div> 
+      
     </header>
 
+    {/* Container for the two sections */}
     <div class="sections-container"> 
-		<section id="education" class="section">
-			<h2><i class="fas fa-graduation-cap"></i> Education</h2>
-		  <div class="card-container">
-			{/* Placeholder Cards - Replace with your actual content */}
-			<article class="card">
-			  <h3>Degree Name - University Name</h3>
-			  <p class="date"><em>Jan 2023 - Present</em></p>
-			  <ul>
-				<li>Relevant info point 1.</li>
-				<li>Relevant info point 2.</li>
-			  </ul>
-			</article>
-			<article class="card">
-			  <h3>Previous Degree - Institution</h3>
-			  <p class="date"><em>May 2021 - Dec 2022</em></p>
-			  <ul>
-				 <li>Relevant info point 1.</li>
-				 <li>Relevant info point 2.</li>
-			  </ul>
-			</article>
-		  </div>
-		</section>
-  
-		
-		<section id="experience" class="section">
-			<h2><i class="fas fa-briefcase"></i> Experience</h2>
-		  <div class="card-container">
-			   {/* Placeholder Cards - Replace with your actual content */}
-			  <article class="card">
-				<h3>Job Title - Company Name</h3>
-				<p class="date"><em>Jan 2023 - Present</em></p>
-				<ul>
-				  <li>Responsibility or achievement 1.</li>
-				  <li>Responsibility or achievement 2.</li>
-				</ul>
-			  </article>
-			  <article class="card">
-				<h3>Previous Job Title - Previous Company</h3>
-				<p class="date"><em>May 2021 - Dec 2022</em></p>
-				<ul>
-				   <li>Responsibility or achievement 1.</li>
-				   <li>Responsibility or achievement 2.</li>
-				</ul>
-			  </article>
-			</div>
-		</section>
-	</div> 
+      <section id="education" class="section">
+          <h2></i> 🎓 Education</h2>
+        <div class="card-container">
+          
+          {/* Card 1: Education */}
+          <article class="card">
+            {/* *** ADDED Card Header for Icon + Title/Date *** */}
+            <div class="card-header">
+              <div class="card-logo">
+				<img src="/images/logos/CMU.png" alt="CMULogo"> 
+			 </div> 
+              <div class="card-title-date">
+                 <h3>Carnegie Mellon University, Pittsburgh, PA</h3>
+                 <h3>M.S. Computer Vision</h3>
+                 <p class="date"><em>Aug 2025 - Present</em></p>
+              </div>
+            </div>
+            {/* *** List items remain below header *** */}
+            <ul>
+			  <li>CGPA: </li>
+              <li>Coursework: </li>
+            </ul>
+          </article>
 
-    <Footer />
-  </body>
-</html>
+          {/* Card 2: Education */}
+          <article class="card">
+             {/* *** ADDED Card Header for Icon + Title/Date *** */}
+             <div class="card-header">
+				<div class="card-logo">
+					<img src="/images/logos/CU.jpg" alt="CULogo"> 
+			   </div> 
+               <div class="card-title-date">
+				<h3>Chulalongkorn University, Bangkok, Thailand</h3>
+				<h3>M.Eng. Mechanical Engineering</h3>
+                  <p class="date"><em>May 2018 - May 2022</em></p>
+               </div>
+             </div>
+             {/* *** List items remain below header *** */}
+            <ul>
+               <li>CGPA: 3.60</li>
+               <li>First Class Honors</li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      
+      <section id="experience" class="section">
+          <h2> 💼 Experience</h2>
+        <div class="card-container">
+             
+             {/* Card 1: Experience */}
+            <article class="card">
+              {/* *** ADDED Card Header for Icon + Title/Date *** */}
+              <div class="card-header">
+                <div class="card-logo">
+					<img src="/images/logos/ARV.jpeg" alt="ARVLogo"> 
+			    </div> 
+                <div class="card-title-date">
+                    <h3>AI and Robotics Ventures Company, Bangkok, Thailand</h3>
+					<h3>Machine Learning Engineer</h3>
+                    <p class="date"><em>May 2022 - May 2025</em></p>
+                </div>
+              </div>
+              {/* *** List items remain below header *** */}
+              <ul>
+                <li>Responsibility or achievement 1.</li>
+                <li>Responsibility or achievement 2.</li>
+              </ul>
+            </article>
+
+          </div>
+      </section>
+    </div>
+
+	<script type="module">
+
+		// Import the clickable name setup function
+		import { setupClickableName } from '/src/scripts/clickable-name.js';
+		
+		window.addEventListener("load", () => {
+	
+		  // Call the setup function for the clickable name
+		  setupClickableName(); 
+	
+		  // Intersection Observer for section animations
+		  const sections = document.querySelectorAll('.section');
+		  if (sections.length > 0) {
+			  const observerOptions = { threshold: 0.1 };
+			  const observerCallback = (entries, observer) => {
+				entries.forEach(entry => {
+				  if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					observer.unobserve(entry.target); 
+				  }
+				});
+			  };
+			  const observer = new IntersectionObserver(observerCallback, observerOptions);
+			  sections.forEach(section => observer.observe(section));
+		  }
+	});
+	</script>
+
+</BaseLayout>
