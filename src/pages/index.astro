@@ -10,7 +10,6 @@ import Footer from '../components/Footer.astro';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/src/styles/global.css" />
-	<script src="https://kit.fontawesome.com/a07b123xyz.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module">
       import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@1.41.1/+esm";
@@ -51,59 +50,54 @@ import Footer from '../components/Footer.astro';
       </div> 
     </header>
 
-    <section id="education" class="section">
-		<h2> 🎓 Education</h2>
-      <div class="card-container">
-		<article class="card">
-		  <h3>Job Title - Company Name</h3>
-		  <p class="date"><em>Jan 2023 - Present</em></p>
-		  <ul>
-			<li>Responsibility or achievement 1.</li>
-			<li>Responsibility or achievement 2.</li>
-			<li>Key technology used.</li>
-		  </ul>
-		</article>
-		<article class="card">
-		  <h3>Previous Job Title - Previous Company</h3>
-		  <p class="date"><em>May 2021 - Dec 2022</em></p>
-		  <ul>
-			 <li>Responsibility or achievement 1.</li>
-			 <li>Responsibility or achievement 2.</li>
-		  </ul>
-		</article>
-		<article class="card">
-		  <h3>Previous Job Title - Previous Company</h3>
-		  <p class="date"><em>May 2021 - Dec 2022</em></p>
-		  <ul>
-			 <li>Responsibility or achievement 1.</li>
-			 <li>Responsibility or achievement 2.</li>
-		  </ul>
-		</article>
-	  </div>
-  </section>
-
-    <section id="experience" class="section">
-		<h2> 💼 Experience</h2>
-		<div class="card-container">
-		  <article class="card">
-			<h3>Job Title - Company Name</h3>
-			<p class="date"><em>Jan 2023 - Present</em></p>
-			<ul>
-			  <li>Responsibility or achievement 1.</li>
-			  <li>Responsibility or achievement 2.</li>
-			  <li>Key technology used.</li>
-			</ul>
-		  </article>
-		  <article class="card">
-			<h3>Previous Job Title - Previous Company</h3>
-			<p class="date"><em>May 2021 - Dec 2022</em></p>
-			<ul>
-			   <li>Responsibility or achievement 1.</li>
-			   <li>Responsibility or achievement 2.</li>
-			</ul>
-		  </article>
-		</div>
-	</section>
+    <div class="sections-container"> 
+		<section id="education" class="section">
+			<h2><i class="fas fa-graduation-cap"></i> Education</h2>
+		  <div class="card-container">
+			{/* Placeholder Cards - Replace with your actual content */}
+			<article class="card">
+			  <h3>Degree Name - University Name</h3>
+			  <p class="date"><em>Jan 2023 - Present</em></p>
+			  <ul>
+				<li>Relevant info point 1.</li>
+				<li>Relevant info point 2.</li>
+			  </ul>
+			</article>
+			<article class="card">
+			  <h3>Previous Degree - Institution</h3>
+			  <p class="date"><em>May 2021 - Dec 2022</em></p>
+			  <ul>
+				 <li>Relevant info point 1.</li>
+				 <li>Relevant info point 2.</li>
+			  </ul>
+			</article>
+		  </div>
+		</section>
+  
+		
+		<section id="experience" class="section">
+			<h2><i class="fas fa-briefcase"></i> Experience</h2>
+		  <div class="card-container">
+			   {/* Placeholder Cards - Replace with your actual content */}
+			  <article class="card">
+				<h3>Job Title - Company Name</h3>
+				<p class="date"><em>Jan 2023 - Present</em></p>
+				<ul>
+				  <li>Responsibility or achievement 1.</li>
+				  <li>Responsibility or achievement 2.</li>
+				</ul>
+			  </article>
+			  <article class="card">
+				<h3>Previous Job Title - Previous Company</h3>
+				<p class="date"><em>May 2021 - Dec 2022</em></p>
+				<ul>
+				   <li>Responsibility or achievement 1.</li>
+				   <li>Responsibility or achievement 2.</li>
+				</ul>
+			  </article>
+			</div>
+		</section>
+	</div> 
 
     <Footer />
   </body>

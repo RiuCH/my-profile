@@ -1,13 +1,10 @@
 body {
     background:  #0f172a;
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
     color: #fff;
     font-family: 'Roboto', sans-serif; /* Set default body font */
     line-height: 1.6; /* Improve readability */
     margin: 0;
     padding: 0;
-    text-align: center;
   }
 
 #particles-js {
@@ -18,13 +15,6 @@ z-index: -1;
 top: 0;
 left: 0;
 }
-
-@keyframes gradientAnimation {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
-}
-
 
 header {
     padding: 40px 20px 60px 20px; /* Adjusted padding */
@@ -47,7 +37,6 @@ header {
 .header-content {
   display: flex;
   flex-wrap: wrap; 
-  /* justify-content: space-around;  */
   align-items: left; 
   gap: 150px; 
   max-width: 1500px; 
@@ -79,7 +68,6 @@ header {
 
 /* Profile picture container adjustments (right side) */
 .profile-container {
-  /* display: inline-block; /* REMOVED - Conflicts with flexbox */ 
   flex-shrink: 0; /* ADDED - Prevents image container from shrinking */
   margin-bottom: 0; /* Reset margin if needed within flex */
   border-radius: 50%;
@@ -100,7 +88,6 @@ border-radius: 50%;
 width: 300px;
 height: 300px;
 object-fit: cover;
-box-shadow: 0 0 12px rgba(46, 204, 113, 0.5);
 }
 
 .btn {
@@ -126,22 +113,47 @@ transform: scale(1.1);
     animation: fadeIn 2s;
 }
 
+.sections-container {
+    display: grid; /* Use Grid for layout */
+    grid-template-columns: 1fr 1fr; /* Create two equal-width columns */
+    gap: 30px; /* Space between the columns */
+    max-width: 1200px; /* Allow container to be wider */
+    margin: 60px auto; /* Center the container and add vertical margin */
+    padding: 0 20px; /* Add side padding */
+    align-items: start; /* Align columns at the top */
+}
+  
+/* General Section styles */
 .section {
-margin: 40px 0;
-padding: 20px;
-opacity: 1;
-transform: translateY(20px);
-transition: opacity 1s ease-out, transform 1s ease-out;
+    /* margin: 60px auto; /* REMOVED - Handled by sections-container now */ 
+    border-radius: 8px; 
+    opacity: 1; 
+    transform: translateY(30px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
 }
 
-.visible {
-opacity: 1 !important;
-transform: translateY(0) !important;
+/* Adjust section margin when inside the grid container */
+.sections-container .section {
+margin: 0; /* Remove individual top/bottom margins */
+}
+
+.section.visible { 
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Section heading styling */
+.section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2ecc71; 
+    font-size: 1.8rem;
+    font-family: 'Orbitron', sans-serif; 
 }
 
 @keyframes fadeIn {
-0% { opacity: 0; }
-100% { opacity: 1; }
+    from { opacity: 0; transform: translateY(10px); } /* Using transform version */
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .card-container {
@@ -191,3 +203,46 @@ h2 i {
     color: #27ae60; /* Accent color */
     font-size: 0.9em; /* Adjust size relative to h2 */
 }
+
+@media (max-width: 992px) { 
+    .sections-container {
+      grid-template-columns: 1fr; /* Stack to single column */
+      gap: 40px; /* Adjust gap for stacked layout */
+      max-width: 1000px; /* Optional: revert max-width */
+      margin: 40px auto; /* Adjust margin */
+    }
+  }
+  
+/* Existing responsive rules for smaller screens */
+@media (max-width: 768px) {
+    .header-content {
+      flex-direction: column; 
+      text-align: center; 
+    }
+    .intro-content {
+       order: 2; 
+       text-align: center; 
+       max-width: 100%; 
+    }
+    .intro-content p.intro-text {
+        text-align: center; /* Revert justify on small stacked view */
+    }
+    .profile-container {
+       order: 1; 
+       margin: 0 auto 30px auto; 
+    }
+    .section {
+       margin: 40px 15px; /* Adjust section margin */
+       padding: 30px 15px; /* Adjust padding */
+    }
+     /* Adjust card layout if needed */
+    .card-container {
+       grid-template-columns: 1fr; 
+    }
+    .site-title {
+        font-size: 2.5rem; /* Adjust title size */
+    }
+    .intro-content h2.intro-text {
+        font-size: 1.8rem; /* Adjust intro heading size */
+    }
+  }

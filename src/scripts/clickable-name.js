@@ -1,30 +1,93 @@
+// src/scripts/clickable-name.js
+
+/**
+ * Finds the site title element, adds a click listener 
+ * to cycle through the first names 'Riu', 'Ryu', 'Rew',
+ * and persists the state across page refreshes using localStorage,
+ * cycling the name on each page load.
+ */
 export function setupClickableName() {
-    // Find the H1 element with the class 'site-title'
+    console.log("setupClickableName function CALLED"); 
     const siteTitleElement = document.querySelector('.site-title');
+    console.log("Site title element found:", siteTitleElement); 
     
-    // Check if the element was actually found
     if (siteTitleElement) {
-      const firstNames = ['Riu', 'Ryu', 'Rew']; // Array of first names to cycle through
-      const lastName = ' Cherdchusakulchai'; // Store the last name (with leading space)
-      let currentNameIndex = 0; // Initialize index to point to 'Riu'
+      const firstNames = ['Riu', 'Ryu', 'Rew']; 
+      const lastName = ' Cherdchusakulchai'; 
+      const storageKey = 'siteTitleNameIndex'; // Key for localStorage
   
-      // Optional: Change cursor to pointer on hover to indicate clickability
+      // --- Logic on Page Load ---
+      let currentNameIndex = 0; // Default starting index
+      try {
+          // 1. Get the last saved index from localStorage
+          const savedIndex = localStorage.getItem(storageKey);
+          console.log("Saved index from localStorage:", savedIndex);
+  
+          if (savedIndex !== null) {
+              // 2. If found, parse it and calculate the *next* index for this load
+              let lastIndex = parseInt(savedIndex, 10);
+              // Check if parsing was successful
+              if (!isNaN(lastIndex)) {
+                  // Increment and wrap around to get the index for *this* page load
+                  currentNameIndex = (lastIndex + 1) % firstNames.length; 
+                  console.log("Calculated next index based on saved:", currentNameIndex);
+              } else {
+                  // Handle cases where saved value isn't a number
+                  console.warn("Saved index was not a number, starting from 0.");
+                  currentNameIndex = 0; // Fallback to 0
+              }
+          } else {
+              // 3. If no saved index (first visit), use the default index 0
+              console.log("No saved index found, starting from 0.");
+              currentNameIndex = 0; 
+          }
+  
+          // 4. Save the *current* index (for this page load) back to localStorage
+          // This ensures the *next* refresh knows what came before.
+          localStorage.setItem(storageKey, currentNameIndex.toString());
+          console.log("Saved current index to localStorage:", currentNameIndex);
+  
+      } catch (error) {
+          // Handle potential localStorage errors (e.g., private browsing mode)
+          console.error("Error accessing localStorage:", error);
+          // Fallback to default index 0 if localStorage fails
+          currentNameIndex = 0; 
+      }
+  
+      // 5. Update the text content immediately on load using the calculated index
+      const initialFirstName = firstNames[currentNameIndex];
+      siteTitleElement.textContent = initialFirstName + lastName;
+      console.log("Initial text content set to:", siteTitleElement.textContent);
+  
+      // --- End Logic on Page Load ---
+  
+      // Set styles for clickability
       siteTitleElement.style.cursor = 'pointer'; 
-      // Optional: Prevent text selection when clicking rapidly
       siteTitleElement.style.userSelect = 'none'; 
   
-      // Add the click event listener to the site title element
+      // Add the click event listener
       siteTitleElement.addEventListener('click', () => {
-        // Calculate the next index, wrapping around using the modulo operator
+        console.log("Site title CLICKED!"); 
+        // Calculate the next index based on the *current* state shown on the page
         currentNameIndex = (currentNameIndex + 1) % firstNames.length; 
-        // Get the new first name from the array
+        console.log("New name index after click:", currentNameIndex); 
+        
         const newFirstName = firstNames[currentNameIndex];
-        // Update the text content of the h1 element
         siteTitleElement.textContent = newFirstName + lastName;
+        console.log("Updated text content to:", siteTitleElement.textContent); 
+  
+        // *** ADDED: Save the new index to localStorage *after click* ***
+        // This ensures the next refresh continues from the clicked state.
+        try {
+            localStorage.setItem(storageKey, currentNameIndex.toString());
+            console.log("Saved index to localStorage after click:", currentNameIndex);
+        } catch (error) {
+            console.error("Error saving to localStorage after click:", error);
+        }
       });
+      console.log("Click listener ADDED to site title."); 
     } else {
-        // Log an error to the console if the element wasn't found
-        // This helps with debugging if the class name changes or is mistyped
+        // Log an error if the element wasn't found
         console.error("Site title element (.site-title) not found.");
     }
   }
