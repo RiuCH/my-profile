@@ -6,34 +6,21 @@ import Footer from '../components/Footer.astro';
 <html>
   <head>
     <title>My Portfolio - Riu Cherdchusakulchai</title>
+	<meta charset="UTF-8">'
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/src/styles/global.css" />
+	<script src="https://kit.fontawesome.com/a07b123xyz.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module">
       import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@1.41.1/+esm";
+	  import { particlesConfig } from '/src/scripts/particles-config.js';
+	  import { setupClickableName } from '/src/scripts/clickable-name.js';
       
       window.addEventListener("load", () => {
-        tsParticles.load("particles-js", {
-          particles: {
-            number: { value: 100, density: { enable: true, value_area: 800 } },
-            color: { value: "#ffffff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.2 },
-            size: { value: 3, random: true },
-            move: { enable: true, speed: 1, direction: "none", random: true }
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "repulse" },
-              onClick: { enable: true, mode: "push" }
-            },
-            modes: {
-              repulse: { distance: 100, duration: 0.4 },
-              push: { quantity: 4 }
-            }
-          },
-          detectRetina: true
-        });
+        tsParticles.load("particles-js", particlesConfig); 
+		setupClickableName(); 
+		
       });
     </script>
   </head>
@@ -43,23 +30,80 @@ import Footer from '../components/Footer.astro';
     
     <header>
       <h1 class="site-title">Riu Cherdchusakulchai</h1>
-      <div class="profile-container">
-        <img src="/images/profile.jpg" alt="Profile Photo" class="profile-photo" />
-      </div>
-      <h1 class="intro-text">Welcome to My Portfolio</h1>
-      <p class="intro-text">Explore my work, experience, and more...</p>
-      <a href="/files/resume.pdf" download class="btn">Download Resume</a>
+      <div class="header-content"> 
+        
+        {/* Container for intro text elements */}
+        <div class="intro-content"> 
+          <h2 class="intro-text">Hello there! I'm Riu (ริว) 👋</h2> 
+          <p class="intro-text">Passionate machine learning engineer with expertise in computer vision. Experienced in developing configurable ML pipelines,
+			multi-camera tracking systems, re-identification methods, 6D object pose estimation, and RGBD contactless body measurement.
+			Successfully designed innovative solutions for real-world AI applications and contributed to top-tier research, with multiple
+			publications in the field. Eager to further explore and advance computer vision and robotics through graduate studies.</p>
+          <a href="/files/resume.pdf" download class="btn">Download Resume</a>
+        </div>
+        
+        {/* Profile picture container */}
+        <div class="profile-container">
+          {/* Updated alt text for better accessibility */}
+          <img src="/images/profile.jpg" alt="Profile Photo of Riu Cherdchusakulchai" class="profile-photo" />
+        </div>
+
+      </div> 
     </header>
 
     <section id="education" class="section">
-      <h2>Education</h2>
-      <p>Brief education details...</p>
-    </section>
+		<h2> 🎓 Education</h2>
+      <div class="card-container">
+		<article class="card">
+		  <h3>Job Title - Company Name</h3>
+		  <p class="date"><em>Jan 2023 - Present</em></p>
+		  <ul>
+			<li>Responsibility or achievement 1.</li>
+			<li>Responsibility or achievement 2.</li>
+			<li>Key technology used.</li>
+		  </ul>
+		</article>
+		<article class="card">
+		  <h3>Previous Job Title - Previous Company</h3>
+		  <p class="date"><em>May 2021 - Dec 2022</em></p>
+		  <ul>
+			 <li>Responsibility or achievement 1.</li>
+			 <li>Responsibility or achievement 2.</li>
+		  </ul>
+		</article>
+		<article class="card">
+		  <h3>Previous Job Title - Previous Company</h3>
+		  <p class="date"><em>May 2021 - Dec 2022</em></p>
+		  <ul>
+			 <li>Responsibility or achievement 1.</li>
+			 <li>Responsibility or achievement 2.</li>
+		  </ul>
+		</article>
+	  </div>
+  </section>
 
     <section id="experience" class="section">
-      <h2>Experience</h2>
-      <p>Summarized experience details...</p>
-    </section>
+		<h2> 💼 Experience</h2>
+		<div class="card-container">
+		  <article class="card">
+			<h3>Job Title - Company Name</h3>
+			<p class="date"><em>Jan 2023 - Present</em></p>
+			<ul>
+			  <li>Responsibility or achievement 1.</li>
+			  <li>Responsibility or achievement 2.</li>
+			  <li>Key technology used.</li>
+			</ul>
+		  </article>
+		  <article class="card">
+			<h3>Previous Job Title - Previous Company</h3>
+			<p class="date"><em>May 2021 - Dec 2022</em></p>
+			<ul>
+			   <li>Responsibility or achievement 1.</li>
+			   <li>Responsibility or achievement 2.</li>
+			</ul>
+		  </article>
+		</div>
+	</section>
 
     <Footer />
   </body>
