@@ -1,12 +1,13 @@
 .contact-section {
-    max-width: 1600px; /* Increased max-width slightly */
-    margin: 40px auto 60px auto; /* Ensure auto margins for centering and add bottom margin */
+    max-width: 1300px; /* Increased max-width slightly */
+    margin: 20px auto 20px auto; /* Ensure auto margins for centering and add bottom margin */
     padding: 0 20px; /* Add padding */
     text-align: center;
+    border-top: 0;
 }
 
 .contact-intro {
-    margin-bottom: 100px; /* Increased space */
+    margin-bottom: 10px; /* Increased space */
     font-size: 2rem; /* Slightly larger */
     color: #bdc3c7;
     line-height: 1.7;
@@ -32,8 +33,9 @@
     border: 1px solid rgba(46, 204, 113, 0.15); /* Slightly stronger border */
     transition: all 0.3s ease;
     font-family: 'Orbitron', sans-serif; 
-    font-size: 2rem; /* Slightly larger font */
+    font-size: 1.5rem; /* Slightly larger font */
 }
+
 
 /* ADDED: Wrapper for icon to give it a background */
 .icon-wrapper {
@@ -73,6 +75,42 @@
 .contact-link.instagram:hover i { color: #d26f81; }
 .contact-link.email:hover i { color: #686bc7; } 
 
+
+.map-container {
+    margin-top: 60px; /* Space above the map */
+    border: 1px solid rgba(46, 204, 113, 0.15); /* Match link border */
+    border-radius: 8px; /* Match card radius */
+    overflow: hidden; /* Ensure iframe respects border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Match card shadow */
+    background-color: rgba(255, 255, 255, 0.03); /* Subtle background */
+    padding: 15px; /* Add some padding around the map */
+  }
+  
+.map-title { /* Optional title style */
+    font-family: 'Orbitron', sans-serif;
+    color: #98d2b0; /* Match site title color */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    text-align: center;
+}
+  
+.map-title i { /* Style icon in title */
+     margin-right: 8px;
+     font-size: 0.9em;
+}
+
+.map-container iframe {
+    display: block; /* Remove potential extra space below iframe */
+    width: 100%; /* Make iframe responsive */
+    max-width: 100%;
+    height: 400px; /* Default height - adjust as needed */
+    /* aspect-ratio: 16 / 9; /* Alternative: use aspect ratio */
+    /* height: auto; */
+    border: none; /* Remove default iframe border */
+    border-radius: 4px; /* Slightly round iframe corners */
+}
+  
 /* Adjust contact link padding on smaller screens */
 @media (max-width: 768px) {
     .contact-section {
@@ -93,6 +131,12 @@
     }
     .contact-links {
         gap: 15px;
+    }
+    .map-container {
+        margin-top: 40px;
+    }
+    .map-container iframe {
+        height: 300px; /* Adjust height for smaller screens */
     }
 }
 
