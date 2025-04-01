@@ -26,7 +26,7 @@ const { title } = Astro.props;
         import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@1.41.1/+esm";
         // Assuming config is in src/scripts/ - adjust path if layout is in different depth
         // If BaseLayout.astro is in src/layouts/, this path should be correct
-        import { particlesConfig } from '../scripts/particles-config.js'; 
+        import { particlesConfig } from '/my-profile/src/scripts/particles-config.js'; 
         
         document.addEventListener("astro:page-load", () => {
             // Check if element exists before loading particles
