@@ -74,11 +74,11 @@ border-radius: 100%;
 .publication-details h3 {
     /* Inherits .card h3 styles */
     margin-bottom: 10px; 
-    font-size: 1.5rem; 
+    font-size: 1.7rem; 
 }
 
 .publication-details p {
-    font-size: 1.2rem; 
+    font-size: 1.3rem; 
     line-height: 1.6;
     margin-bottom: 15px;
     color: #ecf0f1;
@@ -86,7 +86,6 @@ border-radius: 100%;
 
 
 .publication-venue {
-    font-size: 1.2rem;
     font-style: italic;
     color: #bdc3c7; 
     margin-top: -5px; /* Pull closer to title */
@@ -95,7 +94,6 @@ border-radius: 100%;
 
   /* --- MODIFIED: Styles for Description Show/Hide --- */
 .publication-description {
-      font-size: 1rem; 
       line-height: 1.6;
       color: #ecf0f1;
       /* Initial hidden state */
