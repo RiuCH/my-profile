@@ -113,7 +113,7 @@ background: #27ae60;
 color: #fff;
 border-radius: 5px;
 text-decoration: none;
-font-size: 1.2rem;
+font-size: 1.3rem;
 animation: fadeIn 2s
 }
 
@@ -217,7 +217,7 @@ box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3); /* Accent glow on hover */
 color: #a8e0c0; /* Use accent color for titles */
 margin-top: 0;
 margin-bottom: 0;
-font-size: 1.5rem;
+font-size: 1.7rem;
 }
 
 .card .date {
@@ -233,7 +233,7 @@ font-size: 1.5rem;
 }
 .card li {
     margin-bottom: 8px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 h2 i {
