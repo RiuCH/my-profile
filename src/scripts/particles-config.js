@@ -9,7 +9,7 @@ export const particlesConfig = {
       color: { value: "#ffffff" },
       shape: { type: "circle" },
       opacity: { 
-          value: 0.6, // Slightly increased opacity for better visibility
+          value: 0.3, // Slightly increased opacity for better visibility
           random: { enable: true, minimumValue: 0.1 } // Added random object format
       }, 
       size: { 

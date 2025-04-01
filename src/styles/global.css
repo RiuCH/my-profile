@@ -33,7 +33,7 @@ left: 0;
 }
 
 header {
-    padding: 40px 20px 60px 20px; /* Adjusted padding */
+    padding: 40px 20px 0px 20px; /* Adjusted padding */
     transition: padding 0.3s ease;
     position: relative; /* Keep header content above particles */
     z-index: 1;
@@ -142,18 +142,7 @@ transform: scale(1.1);
 .section {
     border-radius: 0px; 
     opacity: 1; 
-    transform: translateY(30px); 
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-}
-
-/* Adjust section margin when inside the grid container */
-.sections-container .section {
-margin: 0; /* Remove individual top/bottom margins */
-}
-
-.section.visible { 
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+    animation: fadeIn 2s;
 }
 
 /* Section heading styling */

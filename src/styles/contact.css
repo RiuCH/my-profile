@@ -1,7 +1,7 @@
 .contact-section {
     max-width: 1300px; /* Increased max-width slightly */
-    margin: 20px auto 20px auto; /* Ensure auto margins for centering and add bottom margin */
-    padding: 0 20px; /* Add padding */
+    margin: 0px auto 0px auto; /* Ensure auto margins for centering and add bottom margin */
+    padding: 0 0px; /* Add padding */
     text-align: center;
     border-top: 0;
 }

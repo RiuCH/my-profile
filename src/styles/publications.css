@@ -1,0 +1,199 @@
+.publications-section {
+    max-width: 1400px; /* Adjust max width as needed */
+    margin: 40px auto 60px auto; /* Center section */
+}
+
+.publications-container {
+position: relative; /* Needed for absolute positioning of the timeline line/markers */
+padding-left: 60px; /* Create space on the left for the timeline elements */
+margin-top: 40px;
+}
+
+/* The vertical timeline line using a pseudo-element */
+.publications-container::before {
+content: '';
+position: absolute;
+left: 20px; /* Position line 20px from the left edge of the container */
+top: 50px;  /* Start slightly below the top */
+bottom: 15px; /* End slightly above the bottom */
+width: 4px; /* Width of the line */
+background-color: rgba(152, 210, 176, 0.2); /* Use accent color, subtle */
+border-radius: 2px;
+z-index: 0; /* Behind markers */
+}
+
+.publication-entry {
+position: relative; /* Needed for positioning marker relative to entry */
+margin-bottom: 50px; /* Space between publication entries */
+}
+.publication-entry:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+}
+
+.timeline-marker-container {
+    position: absolute; 
+    left: -46px; /* Position marker's left edge 12px from container edge (centers 16px marker on 20px line) */
+    top: 50px; /* Align marker with the top of the details card */
+    width: 16px; /* Explicit width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1; /* Ensure marker is above the line */
+}
+
+.timeline-marker {
+width: 32px;
+height: 32px;
+background-color: #98d2b0; /* Use accent color */
+border: 3px solid #0f172a; /* Match body background to punch it out */
+border-radius: 100%;
+}
+
+.timeline-date {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #bdc3c7;
+    margin-top: 8px; /* Space below marker */
+    background-color: #0f172a; /* Match background */
+    padding: 0 3px; /* Padding around date */
+}
+
+.publication-details {
+    margin-left: 40px; /* Add space between timeline elements and card content */
+    display: flex; /* Use flex to arrange text and image */
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 25px; /* Space between text and image */
+    align-items: flex-start; /* Align items at the top */
+}
+
+.publication-details .card-content { /* Wrapper for text */
+    flex: 1; /* Allow text block to grow */
+    min-width: 300px; /* Prevent text from getting too narrow */
+}
+
+.publication-details h3 {
+    /* Inherits .card h3 styles */
+    margin-bottom: 10px; 
+    font-size: 1.5rem; 
+}
+
+.publication-details p {
+    font-size: 1.2rem; 
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #ecf0f1;
+}
+
+
+.publication-venue {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #bdc3c7; 
+    margin-top: -5px; /* Pull closer to title */
+    margin-bottom: 15px; /* Space below venue */
+}
+
+  /* --- MODIFIED: Styles for Description Show/Hide --- */
+.publication-description {
+      font-size: 1rem; 
+      line-height: 1.6;
+      color: #ecf0f1;
+      /* Initial hidden state */
+      max-height: 0; 
+      overflow: hidden;
+      margin-bottom: 0; /* No margin when hidden */
+      transition: max-height 0.5s ease-out, margin-bottom 0.3s ease-out; 
+      opacity: 0;
+      transition: max-height 0.5s ease-out, margin-bottom 0.3s ease-out, opacity 0.3s 0.1s ease-in; /* Delay opacity */
+}
+  
+.publication-description.visible {
+      max-height: 500px; /* Adjust if descriptions are very long */
+      margin-bottom: 15px; /* Add margin back when visible */
+      opacity: 1;
+      transition: max-height 0.5s ease-out, margin-bottom 0.3s ease-out, opacity 0.3s ease-in; /* Fade in */
+}
+
+.toggle-desc-btn {
+    display: inline-block;
+    background: none;
+    border: 1px solid rgba(152, 210, 176, 0.5); 
+    color: #98d2b0; 
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1.2rem;
+    margin-right: 10px; /* Space before details button */
+    margin-bottom: 0px; /* Space below button row */
+    transition: all 0.2s ease;
+}
+
+.toggle-desc-btn:hover {
+    background-color: rgba(152, 210, 176, 0.1);
+    border-color: rgba(152, 210, 176, 0.8);
+}
+
+.publication-image-container {
+    flex-basis: 250px; /* Set a base width for the image container */
+    flex-shrink: 0; /* Don't allow image container to shrink */
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    align-self: center; /* Vertically center image if text is long */
+}
+
+.publication-image-container img {
+    display: block;
+    width: 250px;
+    height: 250px; /* Maintain aspect ratio */
+    transition: transform 0.3s ease;
+}
+.publication-image-container img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.publication-link {
+    /* Inherits .btn styles */
+    padding: 8px 15px; /* Make button smaller */
+    font-size: 1.2rem;
+    margin-top: 0; /* Remove default top margin */
+}
+.publication-link i {
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+
+/* Responsive adjustments for timeline */
+@media (max-width: 768px) {
+    .publications-container {
+        padding-left: 40px; /* Reduce space for timeline */
+    }
+    .publications-container::before {
+        left: 15px; /* Adjust line position */
+    }
+    .timeline-marker-container {
+        left: 7px; /* Adjust marker position (15px - 16px/2) */
+    }
+    .publication-details {
+        margin-left: 25px; /* Reduce space */
+        flex-direction: column; /* Stack image below text */
+        gap: 20px;
+    }
+    .publication-image-container {
+        flex-basis: auto; /* Allow image width to adjust */
+        width: 100%; /* Make image container full width */
+        margin-top: 10px;
+        align-self: stretch; /* Reset alignment */
+    }
+    .publication-details h3 {
+        font-size: 1.15rem;
+    }
+    .publication-details p {
+        font-size: 0.95rem;
+    }
+    .publication-description {
+        font-size: 0.95rem; /* Match paragraph */
+    }
+}

@@ -18,7 +18,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p class="intro-text">Passionate machine learning engineer with expertise in computer vision. Experienced in developing configurable ML pipelines,
             multi-camera tracking systems, re-identification methods, 6D object pose estimation, and RGBD contactless body measurement.
             Successfully designed innovative solutions for real-world AI applications and contributed to top-tier research, with multiple
-            publications in the field. Eager to further explore and advance computer vision and robotics through graduate studies.</p>
+            publications in the field.</p>
           <a href="/files/resume.pdf" download class="btn">Download Resume</a>
         </div>
         
@@ -100,8 +100,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               {/* *** List items remain below header *** */}
               <ul>
-                <li>Responsibility or achievement 1.</li>
-                <li>Responsibility or achievement 2.</li>
+                <li>ML Inference Pipeline for Visual Intelligence Product (DeepZoom)</li>
+                <li>Multi-Target Multi-Camera Tracking System</li>
+				<li>Person and Vehicle Re-Identification System</li>
+				<li>6D Object Pose Estimation for Remote Valve Operation</li>
+				<li>Real-time Multiple Analog Gauges Reader</li>
               </ul>
             </article>
 
@@ -114,7 +117,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		// Import the clickable name setup function
 		import { setupClickableName } from '/src/scripts/clickable-name.js';
 		
-		window.addEventListener("load", () => {
+		document.addEventListener("astro:page-load", ()  => {
 	
 		  // Call the setup function for the clickable name
 		  setupClickableName(); 
