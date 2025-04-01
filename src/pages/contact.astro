@@ -1,0 +1,50 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/contact.css'; 
+---
+<BaseLayout title="Contact Me">
+
+  <section id="contact" class="section contact-section"> 
+    <h2><i class="fa-solid fa-handshake"></i> Get In Touch</h2>
+
+    <p class="contact-intro">
+      Feel free to reach out! Whether you have a question, a project idea, or just want to connect, here are the best ways to contact me:
+    </p>
+
+    <div class="contact-links">
+      {/* Gmail */}
+      <a href="rew.cherdchu@gmail.com" class="contact-link email">
+        <span class="icon-wrapper"><i class="fas fa-envelope"></i></span>
+        <span>rew.cherdchu@gmail.com</span> {/* Replace with your email */}
+      </a>
+
+      {/* WhatsApp */}
+      {/* NOTE: Use full number including country code, no spaces/symbols. Be mindful of privacy. */}
+      <a href="https://wa.me/66641453659" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp">
+         <span class="icon-wrapper"><i class="fab fa-whatsapp"></i></span>
+        <span>WhatsApp</span> {/* Or your number if preferred */}
+      </a>
+      
+      {/* LinkedIn */}
+      <a href="https://linkedin.com/in/riu-cherdchusakulchai" target="_blank" rel="noopener noreferrer" class="contact-link linkedin">
+         <span class="icon-wrapper"><i class="fab fa-linkedin"></i></span>
+        <span>LinkedIn Profile</span>
+      </a>
+
+      {/* GitHub */}
+      <a href="https://github.com/RiuCH" target="_blank" rel="noopener noreferrer" class="contact-link github">
+         <span class="icon-wrapper"><i class="fab fa-github"></i></span>
+        <span>GitHub Profile</span>
+      </a>
+
+      {/* Instagram */}
+      <a href="https://instagram.com/rew_ch" target="_blank" rel="noopener noreferrer" class="contact-link instagram">
+         <span class="icon-wrapper"><i class="fab fa-instagram"></i></span>
+        <span>Instagram Profile</span>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+

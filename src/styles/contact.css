@@ -1,0 +1,103 @@
+.contact-section {
+    max-width: 1600px; /* Increased max-width slightly */
+    margin: 40px auto 60px auto; /* Ensure auto margins for centering and add bottom margin */
+    padding: 0 20px; /* Add padding */
+    text-align: center;
+}
+
+.contact-intro {
+    margin-bottom: 100px; /* Increased space */
+    font-size: 2rem; /* Slightly larger */
+    color: #bdc3c7;
+    line-height: 1.7;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 25px; /* Increased gap */
+    margin-top: 30px;
+}
+
+.contact-link {
+    display: inline-flex; 
+    align-items: center;
+    gap: 15px; /* Increased gap */
+    padding: 15px 25px; /* Increased padding */
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly less transparent */
+    color: #ecf0f1; 
+    text-decoration: none;
+    border-radius: 8px; /* Slightly more rounded */
+    border: 1px solid rgba(46, 204, 113, 0.15); /* Slightly stronger border */
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 2rem; /* Slightly larger font */
+}
+
+/* ADDED: Wrapper for icon to give it a background */
+.icon-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px; /* Size of the circle */
+    height: 72px; /* Size of the circle */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(152, 210, 176, 0.15); /* Use accent color with low opacity */
+    transition: background-color 0.3s ease;
+}
+
+.contact-link i {
+    font-size: 1.2em; /* Adjust icon size within circle */
+    color: #98d2b0; /* Use site title color for icons */
+    line-height: 1; /* Ensure icon centers vertically */
+}
+
+.contact-link:hover {
+    background-color: rgba(46, 204, 113, 0.1); /* Change background on hover */
+    border-color: rgba(46, 204, 113, 0.4); /* Highlight border */
+    color: #fff;
+    transform: translateY(-4px) scale(1.02); /* Slightly more lift */
+    box-shadow: 0 6px 12px rgba(39, 174, 96, 0.25); /* Stronger shadow */
+}
+
+/* Change icon wrapper background on link hover */
+.contact-link:hover .icon-wrapper {
+     background-color: rgba(152, 210, 176, 0.3); 
+}
+
+/* Optional: Specific hover colors for brand icons (applied to icon itself) */
+.contact-link.whatsapp:hover i { color: #25D366; }
+.contact-link.linkedin:hover i { color: #4195bb; }
+.contact-link.github:hover i { color: #e4e4e4; }
+.contact-link.instagram:hover i { color: #d26f81; }
+.contact-link.email:hover i { color: #686bc7; } 
+
+/* Adjust contact link padding on smaller screens */
+@media (max-width: 768px) {
+    .contact-section {
+         max-width: 100%; /* Allow full width */
+         margin-bottom: 40px;
+    }
+    .contact-link {
+        padding: 12px 18px;
+        font-size: 1rem;
+        gap: 12px;
+    }
+    .icon-wrapper {
+        width: 32px;
+        height: 32px;
+    }
+    .contact-link i {
+         font-size: 1.1em;
+    }
+    .contact-links {
+        gap: 15px;
+    }
+}
+
+/* FadeIn animation (assuming it might not be global) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); } 
+  to { opacity: 1; transform: translateY(0); }
+}
