@@ -1,42 +1,136 @@
 ---
+// src/components/Nav.astro
+
+// Placeholder for active link logic. 
+// In a real app, you might get the current path from Astro.url (if SSR) 
+// or pass it down as a prop from the layout/page.
+// For static sites, client-side JS might be needed for robust active state.
+const currentPath = '/my-profile'; // Example: Replace with actual logic later
+
+// Define navigation links 
+// Ensure these hrefs match your actual page routes and base path if applicable
+const navLinks = [
+  { href: "/my-profile/", text: "Home" }, // Assuming '/my-profile/' is home if base is set
+  { href: "/my-profile/publications", text: "Publications" }, 
+  { href: "/my-profile/photos", text: "Photos" }, 
+  // { href: "/my-profile/my-chatbot", text: "My Chatbot" }, // Uncomment if needed
+  { href: "/my-profile/contact", text: "Contact" }, 
+];
 ---
 
-<nav>
-  <ul>
-    <li><a href="/my-profile">Home</a></li>
-    <li><a href="/my-profile/publications">Publications</a></li>
-    <li><a href="/my-profile/gallery">Photos</a></li>
-    <!-- <li><a href="my-profile/my-chatbot">My Chatbot</a></li> -->
-    <li><a href="/my-profile/contact">Contact</a></li>
+<nav class="navbar">
+  <ul class="nav-list">
+    {navLinks.map(link => (
+      <li class="nav-item">
+        {/* Basic active class check - refine if needed */}
+        <a 
+          href={link.href} 
+          class:list={["nav-link", { active: link.href === currentPath }]} 
+        >
+          {link.text}
+        </a>
+      </li>
+    ))}
   </ul>
+  {/* Consider adding Auth buttons here if they shouldn't be in the layout */}
+  {/* <div class="nav-auth"> ... </div> */}
 </nav>
 
 <style>
-  nav {
-    background: #111;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 255, 153, 0.1);
+  .navbar {
+    background: #111; /* Dark background */
+    padding: 15px 30px; /* Default padding */
+    box-shadow: 0 2px 8px rgba(152, 210, 176, 0.15); /* Subtle shadow using accent */
+    position: sticky; /* Make navbar stick to the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure full width */
+    z-index: 1000; /* Ensure it's above other content */
+    box-sizing: border-box; /* Include padding in width calculation */
   }
 
-  ul {
+  .nav-list {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    justify-content: center; /* Center links horizontally */
+    align-items: center; /* Align items vertically */
+    flex-wrap: wrap; /* Allow links to wrap onto the next line */
+    gap: 30px; /* Initial gap between links */
+    padding: 0;
+    margin: 0;
   }
 
-  li a {
-    color: #fff;
+  .nav-item {
+    /* No specific styles needed currently */
+  }
+
+  .nav-link {
+    color: #ecf0f1; /* Soft light text color */
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Slightly smaller base size */
     letter-spacing: 1px;
-    padding: 8px 15px;
+    padding: 8px 15px; /* Adjusted padding */
     transition: all 0.3s ease;
+    display: inline-block; /* Ensure padding is applied correctly */
+    position: relative; /* For active indicator */
   }
 
-  li a:hover {
-    color: #27ae60;
-    text-shadow: 0 0 8px rgba(39, 174, 96, 0.7), 0 0 12px rgba(39, 174, 96, 0.5);
+  /* Hover and Active state styles */
+  .nav-link:hover,
+  .nav-link.active {
+    color: #98d2b0; /* Use consistent accent color */
+    text-shadow: 0 0 8px rgba(152, 210, 176, 0.5); /* Subtle glow */
+  }
+
+  /* Optional: Underline indicator for active/hover link */
+   .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 70%; /* Adjust width of underline */
+      transform: scaleX(0);
+      height: 2px;
+      bottom: -2px; /* Position below text */
+      left: 15%; /* Center the underline */
+      background-color: #98d2b0; /* Accent color */
+      transform-origin: center; /* Underline grows from center */
+      transition: transform 0.25s ease-out;
+   }
+
+   .nav-link:hover::after,
+   .nav-link.active::after {
+      transform: scaleX(1);
+   }
+
+  /* --- RESPONSIVE ADJUSTMENTS --- */
+  @media (max-width: 768px) {
+    .navbar {
+        padding: 12px 20px; /* Reduce padding */
+    }
+    .nav-list {
+        gap: 20px; /* Reduce gap */
+        /* justify-content: space-around; /* Option: spread out more when wrapped */
+    }
+    .nav-link {
+        font-size: 1rem; /* Reduce font size */
+        padding: 6px 8px; /* Reduce padding */
+    }
+     .nav-link::after { /* Adjust underline position */
+         bottom: 0;
+     }
+  }
+
+  @media (max-width: 480px) {
+     .navbar {
+         padding: 10px 15px;
+     }
+     .nav-list {
+         gap: 10px 15px; /* Reduce gap further (row-gap column-gap) */
+     }
+     .nav-link {
+         font-size: 1rem; /* Further reduce font size */
+         letter-spacing: 0.5px;
+         padding: 5px;
+     }
   }
 </style>

@@ -1,12 +1,15 @@
 .publications-section {
     max-width: 1400px; /* Adjust max width as needed */
-    margin: 40px auto 60px auto; /* Center section */
+    margin: 0px auto 60px auto; /* Center section */
+    padding: 0 20px; /* Add horizontal padding */
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .publications-container {
 position: relative; /* Needed for absolute positioning of the timeline line/markers */
 padding-left: 60px; /* Create space on the left for the timeline elements */
-margin-top: 40px;
+margin-top: 20px;
 }
 
 /* The vertical timeline line using a pseudo-element */
@@ -42,16 +45,16 @@ margin-bottom: 50px; /* Space between publication entries */
 }
 
 .timeline-marker {
-width: 32px;
-height: 32px;
-background-color: #98d2b0; /* Use accent color */
-border: 3px solid #0f172a; /* Match body background to punch it out */
-border-radius: 100%;
+    width: clamp(12px, 4vw, 32px); /* Fluid marker size */
+    height: clamp(12px, 4vw, 32px); 
+    background-color: #98d2b0; /* Use accent color */
+    border: 3px solid #0f172a; /* Match body background to punch it out */
+    border-radius: 100%;
 }
 
 .timeline-date {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     color: #bdc3c7;
     margin-top: 8px; /* Space below marker */
     background-color: #0f172a; /* Match background */
@@ -74,11 +77,11 @@ border-radius: 100%;
 .publication-details h3 {
     /* Inherits .card h3 styles */
     margin-bottom: 10px; 
-    font-size: 1.7rem; 
+    font-size: clamp(1.5rem, 3vw, 1.7rem); 
 }
 
 .publication-details p {
-    font-size: 1.3rem; 
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     line-height: 1.6;
     margin-bottom: 15px;
     color: #ecf0f1;
@@ -89,7 +92,7 @@ border-radius: 100%;
     font-style: italic;
     color: #bdc3c7; 
     margin-top: -5px; /* Pull closer to title */
-    margin-bottom: 15px; /* Space below venue */
+    margin-bottom: 5px; /* Space below venue */
 }
 
   /* --- MODIFIED: Styles for Description Show/Hide --- */
@@ -122,7 +125,7 @@ border-radius: 100%;
     border-radius: 4px;
     cursor: pointer;
     font-family: 'Roboto', sans-serif; 
-    font-size: 1.2rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem); 
     margin-right: 10px; /* Space before details button */
     margin-bottom: 0px; /* Space below button row */
     transition: all 0.2s ease;
@@ -134,18 +137,17 @@ border-radius: 100%;
 }
 
 .publication-image-container {
-    flex-basis: 250px; /* Set a base width for the image container */
-    flex-shrink: 0; /* Don't allow image container to shrink */
+    flex-basis: clamp(180px, 30vw, 250px); /* Fluid basis */
+    flex-shrink: 0; 
     border-radius: 4px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    align-self: center; /* Vertically center image if text is long */
+    align-self: center; 
 }
 
 .publication-image-container img {
     display: block;
-    width: 250px;
-    height: 250px; /* Maintain aspect ratio */
+    width: clamp(180px, 30vw, 250px); 
+    height: clamp(180px, 30vw, 250px); 
     transition: transform 0.3s ease;
 }
 .publication-image-container img:hover {
@@ -153,9 +155,8 @@ border-radius: 100%;
 }
 
 .publication-link {
-    /* Inherits .btn styles */
     padding: 8px 15px; /* Make button smaller */
-    font-size: 1.2rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem); 
     margin-top: 0; /* Remove default top margin */
 }
 .publication-link i {
@@ -167,16 +168,16 @@ border-radius: 100%;
 /* Responsive adjustments for timeline */
 @media (max-width: 768px) {
     .publications-container {
-        padding-left: 40px; /* Reduce space for timeline */
+        padding-left: 0px; /* Reduce space for timeline */
     }
     .publications-container::before {
-        left: 15px; /* Adjust line position */
+        opacity: 0;
     }
     .timeline-marker-container {
-        left: 7px; /* Adjust marker position (15px - 16px/2) */
+        opacity: 0;
     }
     .publication-details {
-        margin-left: 25px; /* Reduce space */
+        margin-left: 0px; /* Reduce space */
         flex-direction: column; /* Stack image below text */
         gap: 20px;
     }
