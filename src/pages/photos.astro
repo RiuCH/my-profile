@@ -1,0 +1,95 @@
+---
+// src/pages/photos.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css'; 
+import '../styles/photos.css'; 
+
+
+// --- TODO: Replace with your actual photo events ---
+// --- MODIFIED: Using example CDN URLs for 'src' ---
+const photoEvents = [
+  {
+    date: "Summer 2024", 
+    title: "Trip to Japan",
+    description: "Exploring the vibrant culture and landscapes of Tokyo, Kyoto, and Osaka.",
+    photos: [ 
+      // --- TODO: Replace these EXAMPLE URLs with YOUR actual Cloudinary URLs ---
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000001/portfolio/japan/jp1.jpg", alt: "Senso-ji Temple" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000002/portfolio/japan/jp2.jpg", alt: "Fushimi Inari Shrine" },
+      // Example using transformation for a smaller thumbnail (300x300)
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/w_300,h_300,c_fill,q_auto,f_auto/v1600000003/portfolio/japan/jp3.jpg", alt: "Shibuya Crossing Thumbnail" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000004/portfolio/japan/jp4.jpg", alt: "Osaka Castle" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000005/portfolio/japan/jp5.jpg", alt: "Bamboo Forest" } 
+      // --- End Example URLs ---
+    ]
+  },
+  {
+    date: "Dec 2023",
+    title: "University Project Showcase",
+    description: "Presenting the culmination of our final year computer vision project.",
+    photos: [
+      // --- TODO: Replace these EXAMPLE URLs with YOUR actual Cloudinary URLs ---
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000006/portfolio/project/proj1.jpg", alt: "Project Poster" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000007/portfolio/project/proj2.jpg", alt: "Team with Project" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000008/portfolio/project/proj3.jpg", alt: "Demonstration" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000009/portfolio/project/proj4.jpg", alt: "Close-up of hardware" } 
+      // --- End Example URLs ---
+    ]
+  },
+  {
+    date: "Early 2023",
+    title: "Hiking Adventure",
+    description: "A refreshing weekend hiking trip to explore nearby trails and nature.",
+    photos: [
+       // --- TODO: Replace these EXAMPLE URLs with YOUR actual Cloudinary URLs ---
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000010/portfolio/hike/hike1.jpg", alt: "Mountain view" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000011/portfolio/hike/hike2.jpg", alt: "Group on trail" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000012/portfolio/hike/hike3.jpg", alt: "Waterfall" },
+      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000013/portfolio/hike/hike4.jpg", alt: "Campsite" } 
+      // --- End Example URLs ---
+    ]
+  }
+  // --- Add more photo events here ---
+];
+---
+<BaseLayout title="Photo Gallery">
+
+  {/* Main section for the photos page */}
+  <section id="photos" class="section photos-section">
+    <h2><i class="fas fa-camera-retro"></i> Photo Timeline</h2>
+
+    {/* Container for the timeline layout */}
+    <div class="timeline-container">
+      
+      {/* Map through your photo event data */}
+      {photoEvents.map(event => (
+        <div class="timeline-entry">
+          
+          {/* Left side: Timeline marker and date */}
+          <div class="timeline-marker-container">
+            <div class="timeline-marker"></div> {/* The dot on the timeline */}
+            <span class="timeline-date">{event.date}</span> {/* Date/Label */}
+          </div>
+          
+          {/* Right side: Event details and photo gallery */}
+          <div class="event-details">
+            <h3>{event.title}</h3>
+            <p class="event-description">{event.description}</p>
+            
+            {/* Photo Gallery Grid */}
+            <div class="photo-gallery">
+              {event.photos.map(photo => (
+                <div class="photo-item">
+                  {/* Image source now uses the CDN URL from the data */}
+                  <img src={photo.src} alt={photo.alt} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+
+    </div> {/* End timeline-container */}
+  </section>
+
+</BaseLayout>

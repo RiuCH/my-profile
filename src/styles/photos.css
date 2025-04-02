@@ -1,0 +1,155 @@
+.photos-section {
+    max-width: 1200px; 
+    margin: 40px auto 60px auto; 
+    padding: 0 20px; 
+    }
+.photos-section h2 { 
+    text-align: center;
+    margin-bottom: 50px; 
+    color: #2ecc71; 
+    font-size: 1.8rem;
+    font-family: 'Orbitron', sans-serif; 
+}
+.photos-section h2 i {
+        margin-right: 10px;
+        color: #27ae60; 
+        font-size: 0.9em; 
+}
+
+    /* Timeline layout styles */
+.timeline-container {
+    position: relative;
+    padding-left: 80px; 
+    margin-top: 40px;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 30px; 
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    background-color: rgba(152, 210, 176, 0.2); 
+    border-radius: 2px;
+    z-index: 0;
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 60px; 
+}
+.timeline-entry:last-child {
+        margin-bottom: 0;
+}
+
+.timeline-marker-container {
+    position: absolute;
+    left: 18px; 
+    top: 0; 
+    width: 24px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1; 
+}
+
+.timeline-marker {
+    width: 24px; 
+    height: 24px;
+    background-color: #98d2b0; 
+    border: 4px solid #0f172a; 
+    border-radius: 50%;
+}
+
+.timeline-date {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem; 
+    color: #bdc3c7;
+    margin-top: 10px; 
+    background-color: #0f172a; 
+    padding: 2px 5px; 
+    border-radius: 3px;
+    white-space: nowrap; 
+}
+
+/* Styling for the event details block */
+.event-details {
+    margin-left: 40px; 
+    background-color: rgba(255, 255, 255, 0.03); 
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(46, 204, 113, 0.1);
+}
+
+.event-details h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #2ecc71;
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.event-details .event-description {
+    font-size: 1rem;
+    color: #ecf0f1;
+    margin-bottom: 25px; 
+    line-height: 1.6;
+}
+
+/* Photo Gallery Grid Styles */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 15px; 
+}
+
+.photo-item {
+    border-radius: 4px;
+    overflow: hidden; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    aspect-ratio: 1 / 1; 
+    background-color: rgba(255, 255, 255, 0.05); 
+}
+
+.photo-item img {
+    display: block;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.photo-item img:hover {
+    transform: scale(1.05); 
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-container {
+        padding-left: 50px; 
+    }
+    .timeline-container::before {
+        left: 20px; 
+    }
+    .timeline-marker-container {
+        left: 8px; 
+    }
+    .event-details {
+        margin-left: 20px; 
+        padding: 20px;
+    }
+    .photo-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        gap: 10px;
+    }
+    .event-details h3 {
+        font-size: 1.25rem;
+    }
+    .event-details .event-description {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+    .photos-section h2 {
+        font-size: 1.6rem;
+    }
+}
