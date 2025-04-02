@@ -1,4 +1,3 @@
-/* Improved Responsive Styles for Contact Page */
 
 .contact-section {
     max-width: 1300px; /* Adjusted max-width */
@@ -125,22 +124,17 @@
     border-radius: 4px;
 }
 
-/* Intermediate Breakpoint (Optional - Adjust if needed) */
 @media (max-width: 1024px) {
     .contact-section {
         max-width: 900px; /* Slightly reduce max width */
     }
 }
 
-/* Smaller Screens (Tablets/Phones) */
 @media (max-width: 768px) {
     .contact-section {
          max-width: 100%; /* Allow full width */
          margin-bottom: 40px;
     }
-    /* .contact-link adjustments are handled by clamp() now */
-    /* .icon-wrapper adjustments are handled by clamp() now */
-    /* .contact-link i adjustments are handled by clamp() now */
     .contact-links {
         gap: 15px; /* Keep smaller gap */
     }
