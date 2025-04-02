@@ -1,76 +1,63 @@
 .photos-section {
-    max-width: 1200px; 
+    max-width: 1400px; 
     margin: 40px auto 60px auto; 
-    padding: 0 20px; 
+    padding: 0 20px; /* Add horizontal padding */
+    box-sizing: border-box;
+    width: 100%;
     }
-.photos-section h2 { 
-    text-align: center;
-    margin-bottom: 50px; 
-    color: #2ecc71; 
-    font-size: 1.8rem;
-    font-family: 'Orbitron', sans-serif; 
-}
-.photos-section h2 i {
-        margin-right: 10px;
-        color: #27ae60; 
-        font-size: 0.9em; 
-}
 
-    /* Timeline layout styles */
 .timeline-container {
     position: relative;
-    padding-left: 80px; 
-    margin-top: 40px;
+    padding-left: 60px; 
+    margin-top: 20px;
 }
 
 .timeline-container::before {
     content: '';
     position: absolute;
-    left: 30px; 
-    top: 10px;
-    bottom: 10px;
-    width: 4px;
-    background-color: rgba(152, 210, 176, 0.2); 
+    left: 20px; /* Position line 20px from the left edge of the container */
+    top: 50px;  /* Start slightly below the top */
+    bottom: 15px; /* End slightly above the bottom */
+    width: 4px; /* Width of the line */
+    background-color: rgba(152, 210, 176, 0.2); /* Use accent color, subtle */
     border-radius: 2px;
-    z-index: 0;
+    z-index: 0; /* Behind markers */
 }
 
 .timeline-entry {
     position: relative;
-    margin-bottom: 60px; 
+    margin-bottom: 50px; 
 }
 .timeline-entry:last-child {
         margin-bottom: 0;
 }
 
 .timeline-marker-container {
-    position: absolute;
-    left: 18px; 
-    top: 0; 
-    width: 24px; 
+    position: absolute; 
+    left: -46px; /* Position marker's left edge 12px from container edge (centers 16px marker on 20px line) */
+    top: 50px; /* Align marker with the top of the details card */
+    width: 16px; /* Explicit width */
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1; 
+    z-index: 1; /* Ensure marker is above the line */
 }
 
 .timeline-marker {
-    width: 24px; 
-    height: 24px;
-    background-color: #98d2b0; 
-    border: 4px solid #0f172a; 
-    border-radius: 50%;
+    width: clamp(12px, 4vw, 32px); /* Fluid marker size */
+    height: clamp(12px, 4vw, 32px); 
+    background-color: #98d2b0; /* Use accent color */
+    border: 3px solid #0f172a; /* Match body background to punch it out */
+    border-radius: 100%;
 }
 
 .timeline-date {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1rem; 
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     color: #bdc3c7;
-    margin-top: 10px; 
-    background-color: #0f172a; 
-    padding: 2px 5px; 
-    border-radius: 3px;
-    white-space: nowrap; 
+    margin-top: 8px; /* Space below marker */
+    background-color: #0f172a; /* Match background */
+    padding:  0 3px;
 }
 
 /* Styling for the event details block */
@@ -126,17 +113,18 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .timeline-container {
-        padding-left: 50px; 
+        padding-left: 0px; 
     }
     .timeline-container::before {
-        left: 20px; 
+        opacity: 0;
     }
     .timeline-marker-container {
         left: 8px; 
+        opacity: 0;
     }
     .event-details {
-        margin-left: 20px; 
-        padding: 20px;
+        margin-left: 0px;
+        gap: 20px;
     }
     .photo-gallery {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 

@@ -14,15 +14,15 @@ margin-top: 20px;
 
 /* The vertical timeline line using a pseudo-element */
 .publications-container::before {
-content: '';
-position: absolute;
-left: 20px; /* Position line 20px from the left edge of the container */
-top: 50px;  /* Start slightly below the top */
-bottom: 15px; /* End slightly above the bottom */
-width: 4px; /* Width of the line */
-background-color: rgba(152, 210, 176, 0.2); /* Use accent color, subtle */
-border-radius: 2px;
-z-index: 0; /* Behind markers */
+    content: '';
+    position: absolute;
+    left: 20px; /* Position line 20px from the left edge of the container */
+    top: 50px;  /* Start slightly below the top */
+    bottom: 15px; /* End slightly above the bottom */
+    width: 4px; /* Width of the line */
+    background-color: rgba(152, 210, 176, 0.2); /* Use accent color, subtle */
+    border-radius: 2px;
+    z-index: 0; /* Behind markers */
 }
 
 .publication-entry {
@@ -177,7 +177,7 @@ margin-bottom: 50px; /* Space between publication entries */
         opacity: 0;
     }
     .publication-details {
-        margin-left: 0px; /* Reduce space */
+        margin-left: 0px;
         flex-direction: column; /* Stack image below text */
         gap: 20px;
     }
