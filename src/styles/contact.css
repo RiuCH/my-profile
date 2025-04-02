@@ -1,146 +1,159 @@
+/* Improved Responsive Styles for Contact Page */
+
 .contact-section {
-    max-width: 1300px; /* Increased max-width slightly */
-    margin: 0px auto 0px auto; /* Ensure auto margins for centering and add bottom margin */
-    padding: 0 0px; /* Add padding */
+    max-width: 1300px; /* Adjusted max-width */
+    /* RESPONSIVE: Added vertical margin back, use clamp for padding */
+    margin: clamp(30px, 5vw, 60px) auto; 
+    margin-top: 0px;
+    padding: 0 clamp(15px, 4vw, 40px); /* Fluid horizontal padding */
+    box-sizing: border-box;
+    width: 100%;
     text-align: center;
-    border-top: 0;
 }
 
+
 .contact-intro {
-    margin-bottom: 10px; /* Increased space */
-    font-size: 2rem; /* Slightly larger */
+    margin-bottom: clamp(30px, 6vw, 50px); /* Fluid margin */
+    /* RESPONSIVE: Reduced base size, use clamp */
+    font-size: clamp(1.5rem, 2.5vw, 2rem); 
     color: #bdc3c7;
     line-height: 1.7;
+    margin-left: auto; /* Center intro text block */
+    margin-right: auto; /* Center intro text block */
 }
 
 .contact-links {
     display: flex;
     flex-wrap: wrap; 
     justify-content: center; 
-    gap: 25px; /* Increased gap */
+    gap: clamp(15px, 3vw, 25px); 
     margin-top: 30px;
 }
 
 .contact-link {
     display: inline-flex; 
     align-items: center;
-    gap: 15px; /* Increased gap */
-    padding: 15px 25px; /* Increased padding */
-    background-color: rgba(255, 255, 255, 0.05); /* Slightly less transparent */
+    gap: clamp(10px, 2vw, 15px); 
+    padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 25px); 
+    background-color: rgba(255, 255, 255, 0.05); 
     color: #ecf0f1; 
     text-decoration: none;
-    border-radius: 8px; /* Slightly more rounded */
-    border: 1px solid rgba(46, 204, 113, 0.15); /* Slightly stronger border */
+    border-radius: 8px; 
+    border: 1px solid rgba(46, 204, 113, 0.15); 
     transition: all 0.3s ease;
     font-family: 'Orbitron', sans-serif; 
-    font-size: 1.5rem; /* Slightly larger font */
+    font-size: clamp(1.0rem, 2.5vw, 1.5rem); 
 }
 
 
-/* ADDED: Wrapper for icon to give it a background */
+/* Icon wrapper */
 .icon-wrapper {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 72px; /* Size of the circle */
-    height: 72px; /* Size of the circle */
-    border-radius: 50%; /* Make it a circle */
-    background-color: rgba(152, 210, 176, 0.15); /* Use accent color with low opacity */
+    width: clamp(36px, 8vw, 50px); 
+    height: clamp(36px, 8vw, 50px); 
+    border-radius: 50%; 
+    background-color: rgba(152, 210, 176, 0.15); 
     transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .contact-link i {
-    font-size: 1.2em; /* Adjust icon size within circle */
-    color: #98d2b0; /* Use site title color for icons */
-    line-height: 1; /* Ensure icon centers vertically */
+    font-size: clamp(1rem, 3vw, 1.2em); 
+    color: #98d2b0; 
+    line-height: 1; 
 }
 
 .contact-link:hover {
-    background-color: rgba(46, 204, 113, 0.1); /* Change background on hover */
-    border-color: rgba(46, 204, 113, 0.4); /* Highlight border */
+    background-color: rgba(46, 204, 113, 0.1); 
+    border-color: rgba(46, 204, 113, 0.4); 
     color: #fff;
-    transform: translateY(-4px) scale(1.02); /* Slightly more lift */
-    box-shadow: 0 6px 12px rgba(39, 174, 96, 0.25); /* Stronger shadow */
+    transform: translateY(-4px) scale(1.02); 
+    box-shadow: 0 6px 12px rgba(39, 174, 96, 0.25); 
 }
 
-/* Change icon wrapper background on link hover */
 .contact-link:hover .icon-wrapper {
      background-color: rgba(152, 210, 176, 0.3); 
 }
 
-/* Optional: Specific hover colors for brand icons (applied to icon itself) */
+/* Optional: Specific hover colors for brand icons */
 .contact-link.whatsapp:hover i { color: #25D366; }
 .contact-link.linkedin:hover i { color: #4195bb; }
 .contact-link.github:hover i { color: #e4e4e4; }
 .contact-link.instagram:hover i { color: #d26f81; }
-.contact-link.email:hover i { color: #686bc7; } 
+.contact-link.email:hover i { color: #686bc7; }
+
+/* Style for keyboard focus */
+.contact-link:focus-visible { 
+  outline: 2px solid #2ecc71; 
+  outline-offset: 3px;
+  background-color: rgba(46, 204, 113, 0.1); 
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.3); 
+}
+.contact-link:focus {
+    outline: none; 
+}
 
 
+/* Map Styles */
 .map-container {
-    margin-top: 60px; /* Space above the map */
-    border: 1px solid rgba(46, 204, 113, 0.15); /* Match link border */
-    border-radius: 8px; /* Match card radius */
-    overflow: hidden; /* Ensure iframe respects border-radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Match card shadow */
-    background-color: rgba(255, 255, 255, 0.03); /* Subtle background */
-    padding: 15px; /* Add some padding around the map */
-  }
-  
-.map-title { /* Optional title style */
-    font-family: 'Orbitron', sans-serif;
-    color: #98d2b0; /* Match site title color */
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 2rem;
-    text-align: center;
+    margin-top: clamp(40px, 8vw, 60px); 
+    border: 1px solid rgba(46, 204, 113, 0.15); 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    background-color: rgba(255, 255, 255, 0.03); 
+    padding: clamp(10px, 2vw, 15px); 
 }
   
-.map-title i { /* Style icon in title */
-     margin-right: 8px;
-     font-size: 0.9em;
+.map-title { 
+    font-family: 'Orbitron', sans-serif;
+    color: #98d2b0; 
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    text-align: center;
 }
 
 .map-container iframe {
-    display: block; /* Remove potential extra space below iframe */
-    width: 100%; /* Make iframe responsive */
+    display: block; 
+    width: 100%; 
     max-width: 100%;
-    height: 400px; /* Default height - adjust as needed */
-    /* aspect-ratio: 16 / 9; /* Alternative: use aspect ratio */
-    /* height: auto; */
-    border: none; /* Remove default iframe border */
-    border-radius: 4px; /* Slightly round iframe corners */
+    height: 400px;
+    border: none; 
+    border-radius: 4px;
 }
-  
-/* Adjust contact link padding on smaller screens */
+
+/* Intermediate Breakpoint (Optional - Adjust if needed) */
+@media (max-width: 1024px) {
+    .contact-section {
+        max-width: 900px; /* Slightly reduce max width */
+    }
+}
+
+/* Smaller Screens (Tablets/Phones) */
 @media (max-width: 768px) {
     .contact-section {
          max-width: 100%; /* Allow full width */
          margin-bottom: 40px;
     }
-    .contact-link {
-        padding: 12px 18px;
-        font-size: 1rem;
-        gap: 12px;
-    }
-    .icon-wrapper {
-        width: 32px;
-        height: 32px;
-    }
-    .contact-link i {
-         font-size: 1.1em;
-    }
+    /* .contact-link adjustments are handled by clamp() now */
+    /* .icon-wrapper adjustments are handled by clamp() now */
+    /* .contact-link i adjustments are handled by clamp() now */
     .contact-links {
-        gap: 15px;
+        gap: 15px; /* Keep smaller gap */
     }
     .map-container {
         margin-top: 40px;
     }
     .map-container iframe {
-        height: 300px; /* Adjust height for smaller screens */
+        /* Keep aspect-ratio */
+        height: 200px; /* Ensure minimum height */
     }
 }
 
-/* FadeIn animation (assuming it might not be global) */
+/* FadeIn animation (if not global) */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); } 
   to { opacity: 1; transform: translateY(0); }
