@@ -3,54 +3,123 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css'; 
 import '../styles/photos.css'; 
+import { v2 as cloudinary } from 'cloudinary'; // Import Cloudinary SDK
 
+const parentFolderToList = 'portfolio/Shanghai'; // Specify the parent folder to list subfolders
+// Configure Cloudinary using environment variables (ensure they are set in .env)
+cloudinary.config({ 
+  cloud_name: import.meta.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: import.meta.env.CLOUDINARY_API_KEY, 
+  api_secret: import.meta.env.CLOUDINARY_API_SECRET,
+  secure: true 
+});
 
-// --- TODO: Replace with your actual photo events ---
-// --- MODIFIED: Using example CDN URLs for 'src' ---
-const photoEvents = [
+cloudinary.api.ping()
+  .then(result => {
+    console.log('Cloudinary Ping Result:', result);
+    // A successful ping usually returns { status: 'ok' }
+    if (result?.status === 'ok') {
+      console.log('\n✅ SUCCESS: Connection to Cloudinary successful!');
+      console.log('Your environment variables seem correct.');
+    } else {
+      console.error('\n⚠️ FAILED: Connection established, but ping status was not "ok". Result:', result);
+      console.error('This might indicate an issue with the Cloudinary API service itself.');
+    }
+  })
+
+// --- Define your events with the Cloudinary folder path for each ---
+let photoEvents = [
   {
-    date: "Summer 2024", 
-    title: "Trip to Japan",
-    description: "Exploring the vibrant culture and landscapes of Tokyo, Kyoto, and Osaka.",
-    photos: [ 
-      // --- TODO: Replace these EXAMPLE URLs with YOUR actual Cloudinary URLs ---
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000001/portfolio/japan/jp1.jpg", alt: "Senso-ji Temple" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000002/portfolio/japan/jp2.jpg", alt: "Fushimi Inari Shrine" },
-      // Example using transformation for a smaller thumbnail (300x300)
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/w_300,h_300,c_fill,q_auto,f_auto/v1600000003/portfolio/japan/jp3.jpg", alt: "Shibuya Crossing Thumbnail" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000004/portfolio/japan/jp4.jpg", alt: "Osaka Castle" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000005/portfolio/japan/jp5.jpg", alt: "Bamboo Forest" } 
-      // --- End Example URLs ---
-    ]
+    date: "Feb 2025", 
+    title: "Shanghai Trip",
+    description: "",
+    cloudinaryFolder: 'portfolio/Shanghai2025',
+    photos: [ ]
   },
   {
     date: "Dec 2023",
-    title: "University Project Showcase",
-    description: "Presenting the culmination of our final year computer vision project.",
-    photos: [
-      // --- TODO: Replace these EXAMPLE URLs with YOUR actual Cloudinary URLs ---
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000006/portfolio/project/proj1.jpg", alt: "Project Poster" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000007/portfolio/project/proj2.jpg", alt: "Team with Project" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000008/portfolio/project/proj3.jpg", alt: "Demonstration" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000009/portfolio/project/proj4.jpg", alt: "Close-up of hardware" } 
-      // --- End Example URLs ---
-    ]
+    title: "Tokyo Trip",
+    description: "",
+    cloudinaryFolder: 'portfolio/Tokyo2024',
+    photos: [ ]
   },
   {
-    date: "Early 2023",
-    title: "Hiking Adventure",
-    description: "A refreshing weekend hiking trip to explore nearby trails and nature.",
-    photos: [
-       // --- TODO: Replace these EXAMPLE URLs with YOUR actual Cloudinary URLs ---
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000010/portfolio/hike/hike1.jpg", alt: "Mountain view" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000011/portfolio/hike/hike2.jpg", alt: "Group on trail" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000012/portfolio/hike/hike3.jpg", alt: "Waterfall" },
-      { src: "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1600000013/portfolio/hike/hike4.jpg", alt: "Campsite" } 
-      // --- End Example URLs ---
-    ]
-  }
+    date: "June 2024",
+    title: "CVPR Conference at Seattle",
+    description: "",
+    cloudinaryFolder: 'portfolio/Seattle2024',
+    photos: [ ]
+  },
+  // {
+  //   date: "March 2024",
+  //   title: "Tokyo Trip",
+  //   description: "",
+  //   cloudinaryFolder: 'portfolio/japan',
+  //   photos: [ ]
+  // },
+  // {
+  //   date: "Dec 2023",
+  //   title: "Hukuba Trip",
+  //   description: "",
+  //   cloudinaryFolder: 'portfolio/japan',
+  //   photos: [ ]
+  // },
+  // {
+  //   date: "March 2023",
+  //   title: "Singapore Trip",
+  //   description: "",
+  //   cloudinaryFolder: 'portfolio/japan',
+  //   photos: [ ]
+  // }
   // --- Add more photo events here ---
 ];
+
+try {
+  // Create an array of promises, one for each folder fetch operation
+  const fetchPromises = photoEvents.map(async (event) => {
+    // Skip if no folder is specified for this event
+    if (!event.cloudinaryFolder) {
+      console.warn(`Event "${event.title}" has no cloudinaryFolder specified.`);
+      return event; // Return the event object unchanged
+    }
+
+    console.log(`Fetching images for "${event.title}" from Cloudinary folder: ${event.cloudinaryFolder}`);
+    
+    // Ensure folder path ends with '/' for accurate prefix matching if needed
+    const folderPrefix = event.cloudinaryFolder.endsWith('/') ? event.cloudinaryFolder : event.cloudinaryFolder;
+
+    // Fetch resources from the specific folder
+    const results = await cloudinary.api.resources({ 
+        type: 'upload',
+        prefix: folderPrefix, 
+        max_results: 35 // Limit to 10 photos per event, adjust as needed
+    });
+
+    const sortedResources = results.resources.sort((a, b) => {
+      // Sort by public_id (or any other property you prefer)
+        return a.public_id.localeCompare(b.public_id);
+    });
+    
+    // Populate the photos array for the current event
+    event.photos = sortedResources.map(resource => ({
+      src: resource.secure_url, 
+      alt: resource.context?.alt || `Photo from ${event.title}`, // Use Cloudinary context for alt text if set
+      publicId: resource.public_id,
+      width: resource.width,
+      height: resource.height
+    }));
+
+    console.log(`Fetched ${event.photos.length} photos for "${event.title}".`);
+    return event; // Return the event object with the populated photos array
+  });
+
+  // Wait for all the fetching operations to complete
+  photoEvents = await Promise.all(fetchPromises);
+
+} catch (error) {
+  console.error("Error fetching images for events from Cloudinary:", error);
+  // In case of error, photoEvents will proceed with empty photos arrays
+}
 ---
 <BaseLayout title="Photo Gallery">
 
@@ -78,12 +147,28 @@ const photoEvents = [
             
             {/* Photo Gallery Grid */}
             <div class="photo-gallery">
-              {event.photos.map(photo => (
-                <div class="photo-item">
-                  {/* Image source now uses the CDN URL from the data */}
-                  <img src={photo.src} alt={photo.alt} loading="lazy" />
-                </div>
-              ))}
+              {event.photos.map(photo => {
+                  // Generate optimized thumbnail URL
+                  const thumbnailUrl = cloudinary.url(photo.publicId, { 
+                      width: 400, 
+                      height: 400, 
+                      crop: "pad", 
+                      background: "auto", 
+                      quality: 75, // EXAMPLE: Set quality to 75 (lower = smaller file)
+                      // quality: "auto", // Use this for automatic quality balancing
+                      fetch_format: "auto" 
+                  });
+                  return (
+                    <div class="photo-item">
+                      <img 
+                        src={thumbnailUrl} 
+                        alt={photo.alt} 
+                        loading="lazy" 
+                        width="400" height="400" 
+                      />
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.5.5"
+    "@cloudinary/url-gen": "^1.21.0",
+    "astro": "^5.5.5",
+    "cloudinary": "^2.6.0"
   }
 }
