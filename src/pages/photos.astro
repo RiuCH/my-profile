@@ -158,14 +158,19 @@ try {
                       // quality: "auto", // Use this for automatic quality balancing
                       fetch_format: "auto" 
                   });
+                  const lightboxUrl = cloudinary.url(photo.publicId, {
+                      height: 800, 
+                      quality: 100, 
+                      fetch_format: "auto" 
+                  });
                   return (
                     <div class="photo-item">
-                      <img 
-                        src={thumbnailUrl} 
-                        alt={photo.alt} 
-                        loading="lazy" 
-                        width="400" height="400" 
-                      />
+                      <a class="lightbox-trigger" 
+                         data-lightbox-src={lightboxUrl} 
+                         data-alt={photo.alt}
+                         >
+                        <img src={thumbnailUrl} alt={photo.alt} loading="lazy" width="400" height="400" />
+                      </a>
                     </div>
                   );
                 })}
@@ -177,4 +182,126 @@ try {
     </div> {/* End timeline-container */}
   </section>
 
+  <div id="lightbox" class="lightbox-overlay">
+    {/* Prev/Next buttons */}
+    
+    {/* Content area (image and caption) */}
+    <div class="lightbox-content">
+      <!-- <button id="lightbox-prev" class="lightbox-nav prev" title="Previous image" aria-label="Previous image">
+        <i class="fas fa-chevron-left"></i>
+      </button> -->
+      {/* Close button (inside content) */}
+      <button id="lightbox-close" class="lightbox-close" title="Close" aria-label="Close image viewer">&times;</button>
+      <img id="lightbox-img" src="" alt="Enlarged photo">
+      <!-- <button id="lightbox-next" class="lightbox-nav next" title="Next image" aria-label="Next image">
+        <i class="fas fa-chevron-right"></i>
+      </button> -->
+    </div>
+  
+  </div>
+
 </BaseLayout>
+
+<script>
+  function setupLightbox() {
+    console.log("Attempting to set up Lightbox..."); 
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeButton = document.getElementById('lightbox-close');
+    const triggers = document.querySelectorAll('.photo-gallery .lightbox-trigger'); 
+
+    console.log(`Found ${triggers.length} lightbox triggers.`); 
+
+    if (!lightbox || !lightboxImg || !closeButton) {
+      console.error('Lightbox structural elements not found!');
+      return; 
+    }
+
+    // Function to open the lightbox
+    const openLightbox = (imgSrc, imgAlt) => {
+      console.log("Opening lightbox for:", imgSrc); 
+      lightboxImg.src = imgSrc; // Set the optimized lightbox image source
+      lightboxImg.alt = imgAlt;
+      lightbox.classList.add('visible');
+      document.body.style.overflow = 'hidden'; 
+    };
+
+    // Function to close the lightbox
+    const closeLightbox = () => { 
+      if (lightbox) { 
+          lightbox.classList.remove('visible');
+      } else {
+           console.error("Lightbox element null inside closeLightbox!"); 
+      }
+      if (document.body) {
+          document.body.style.overflow = ''; 
+          console.log("Body overflow reset."); 
+      }
+      if (lightboxImg) {
+          setTimeout(() => { lightboxImg.src = ""; }, 300); 
+      }
+     };
+
+    // Add click listener to all image triggers
+    triggers.forEach((trigger, index) => {
+      const newTrigger = trigger.cloneNode(true); // Simple way to remove old listeners
+      trigger.parentNode.replaceChild(newTrigger, trigger);
+
+      newTrigger.addEventListener('click', (e) => {
+        console.log(`Trigger ${index + 1} CLICKED!`); 
+        e.preventDefault(); // Prevent following the href
+        console.log("preventDefault() called."); 
+        
+        const lightboxSrc = newTrigger.getAttribute('data-lightbox-src'); 
+        const altText = newTrigger.getAttribute('data-alt');
+        console.log("Image data:", { lightboxSrc, altText }); 
+
+        if (lightboxSrc) { 
+          openLightbox(lightboxSrc, altText); // Open using optimized URL
+        } else {
+          console.error("Could not get lightbox image source from data-lightbox-src attribute."); 
+        }
+      });
+    });
+
+    if (closeButton._listenerAttached !== true) { // Basic check to prevent duplicates
+        closeButton.addEventListener('click', closeLightbox);
+        closeButton._listenerAttached = true; // Mark as attached
+        console.log("Close button listener attached."); // DEBUG
+    }
+
+    // Add click listener to overlay background to close 
+    if (lightbox._listenerAttached !== true) { // Basic check
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) { 
+                closeLightbox();
+            }
+        });
+        lightbox._listenerAttached = true; // Mark as attached
+        console.log("Overlay click listener attached."); // DEBUG
+    }
+
+    // Keyboard support (Escape key to close) 
+    const handleEscKey = (e) => {
+         if (e.key === 'Escape' && lightbox.classList.contains('visible')) {
+            closeLightbox();
+        }
+    };
+    document.removeEventListener('keydown', handleEscKey); // Remove previous before adding
+    document.addEventListener('keydown', handleEscKey);
+    console.log("Escape key listener attached/re-attached."); 
+
+
+    console.log('Lightbox setup complete for Photos page.');
+  }
+
+  // Run setup on initial load and after page transitions (with duplicate run prevention)
+  document.addEventListener('astro:page-load', () => { window._lightboxSetupDone = false; setupLightbox(); window._lightboxSetupDone = true; });
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      if (!window._lightboxSetupDone) { setupLightbox(); window._lightboxSetupDone = true; }
+  } else {
+      document.addEventListener('DOMContentLoaded', () => { if (!window._lightboxSetupDone) { setupLightbox(); window._lightboxSetupDone = true; }});
+  }
+  document.addEventListener('astro:before-swap', () => { window._lightboxSetupDone = false; });
+
+</script>
