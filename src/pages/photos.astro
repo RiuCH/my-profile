@@ -30,6 +30,13 @@ cloudinary.api.ping()
 // --- Define your events with the Cloudinary folder path for each ---
 let photoEvents = [
   {
+    date: "Apr 2025", 
+    title: "France Trip",
+    description: "",
+    cloudinaryFolder: 'portfolio/France2025',
+    photos: [ ]
+  },
+  {
     date: "Feb 2025", 
     title: "Shanghai Trip",
     description: "",
@@ -92,7 +99,7 @@ try {
     const results = await cloudinary.api.resources({ 
         type: 'upload',
         prefix: folderPrefix, 
-        max_results: 35 // Limit to 10 photos per event, adjust as needed
+        max_results: 49 // Limit to 10 photos per event, adjust as needed
     });
 
     const sortedResources = results.resources.sort((a, b) => {
