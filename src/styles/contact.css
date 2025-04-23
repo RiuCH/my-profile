@@ -40,7 +40,7 @@
     border-radius: 8px; 
     border: 1px solid rgba(46, 204, 113, 0.15); 
     transition: all 0.3s ease;
-    font-family: 'Orbitron', sans-serif; 
+    font-family: 'Roboto', sans-serif; 
     font-size: clamp(1.0rem, 2.5vw, 1.5rem); 
 }
 
@@ -107,7 +107,7 @@
 }
   
 .map-title { 
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #98d2b0; 
     margin-top: 0;
     margin-bottom: 15px;

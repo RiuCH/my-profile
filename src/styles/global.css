@@ -50,7 +50,7 @@ header {
     text-shadow: 0 0 5px rgba(152, 210, 176, 0.5); 
     margin: 0 0 30px 0; 
     text-align: center; 
-    font-family: 'Orbitron', sans-serif; 
+    font-family: 'Roboto', sans-serif; 
     cursor: pointer;
     user-select: none;
   }
@@ -86,7 +86,7 @@ header {
     animation: fadeIn 2s ease-in-out forwards; /* User's animation */
     margin-top: 0;
     margin-bottom: 10px; /* Spacing between h2 and p */
-    font-family: 'Roboto', sans-serif; /* Ensure Orbitron if needed, or remove if h2/p have own fonts */
+    font-family: 'Roboto', sans-serif; 
 }
 
 .intro-content h2.intro-text { font-size: clamp(1.6rem, 4vw, 2.2rem);   }
@@ -179,7 +179,7 @@ transform: scale(1.1);
     margin-bottom: 10px;
     color: #7bc499; 
     font-size: clamp(1.8rem, 4vw, 2.5rem); 
-    font-family: 'Orbitron', sans-serif; 
+    font-family: 'Roboto', sans-serif; 
 }
 
 @keyframes fadeIn {
