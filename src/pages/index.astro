@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="My Portfolio - Riu Cherdchusakulchai">
+<BaseLayout title="Riu Cherdchusakulchai">
     
     <header>
       {/* Site title remains above the flex layout */}
@@ -11,15 +11,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       
       {/* Container to apply flexbox */}
       <div class="header-content"> 
-        
         {/* Container for intro text elements */}
         <div class="intro-content"> 
           <h2 class="intro-text">Hello guys! I'm Riu (ริว) 👋</h2> 
-          <p class="intro-text">I am currently pursuing an M.S. in Computer Vision at Carnegie Mellon University. 
-            As a passionate ML engineer specializing in CV, my experience includes building configurable ML pipelines, 
-            multi-camera tracking and re-identification systems, 6D object pose estimation, and RGBD body measurement. I design innovative solutions 
-            for real-world AI applications, contributing to multiple publications. 
-            My current interests lie in 3D vision, Robot Learning, and Multimodal Learning. I am eager to deepen my knowledge and contribute further in these exciting areas.</p>
+          <p class="intro-text">I am a Master's student in Computer Vision in the <a href="https://www.ri.cmu.edu/" target="_blank">Robotics Institute</a> at Carnegie Mellon University.
+              I am advised by Prof. <a href="http://www.cs.cmu.edu/~ftorre/" target="_blank">Fernando De la Torre</a>, working in the <a href="http://humansensing.cs.cmu.edu/" target="_blank">Human Sensing Lab</a>.
+              Before that, I had three years working experience as a Machine Learning Engineer at <a href="https://arv.co.th/en" target="_blank">AI and Robotics Ventures</a>.
+              I received my Bachelor's degree in Mechanical Engineering from Chulalongkorn University, advised by Prof. <a href="https://sites.google.com/view/chulaxcps/people" target="_blank">Nattapol Damrongplasit</a>.<br><br>
+              
+              My research interests lie at the intersection of 3D vision, spatial intelligence, and robotics. I'm particularly interested in neural scene reconstruction and 3D understanding for augmented reality and robotics applications.
+           
+            </p>
           <a href="/my-profile/files/resume.pdf" download class="btn">Download Resume</a>
         </div>
         
@@ -60,8 +62,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             {/* *** List items remain below header *** */}
             <ul>
-			  <li>CGPA: </li>
-              <li>Coursework: </li>
+			  <!-- <li>CGPA: </li> -->
+              <li>Coursework: Advanced Computer Vision, Learning for 3D Vision, Robot Learning</li>
             </ul>
           </article>
 

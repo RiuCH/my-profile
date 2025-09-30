@@ -55,6 +55,9 @@ header {
     user-select: none;
   }
 
+a:visited {
+  color: #89968a; /* Muted Gray */
+}
 /* --- Flex container for header layout --- */
 .header-content {
     display: flex;
