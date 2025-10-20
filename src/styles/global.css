@@ -56,15 +56,15 @@ header {
   }
 
 a:visited {
-  color: #89968a; /* Muted Gray */
+  color: #d2e2d4; /* Muted Gray */
 }
 
 a:link {
-  color: #89968a; /* Example: CMU's blue or a standard web blue */
+  color: #d2e2d4; /* Example: CMU's blue or a standard web blue */
 }
 
 a:active {
-  color: #89968a;
+  color: #d2e2d4;
 }
 /* --- Flex container for header layout --- */
 .header-content {
